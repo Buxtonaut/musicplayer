@@ -2,6 +2,7 @@ const musicContainer = document.getElementById('music-container');
 const playBtn = document.getElementById('play');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
+const shuffleBtn = document.getElementById('shuffle');
 
 const audio = document.getElementById('audio');
 const progress = document.getElementById('progress');
@@ -49,8 +50,17 @@ function nextSong() {
   playSong();
 }
 
+function shuffleSong() {
+	songIndex = Math.floor(Math.random() * songs.length);
+	console.log(songIndex);
+	loadSong(songs[songIndex]);
+	playSong();
+	//Used the math.random function to get a random number between 0 and 1, multiplied by the index length to get a random Index value for shuffling, and passed it back into the original loadSong/playSong functions
+}
+
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
+shuffleBtn.addEventListener('click', shuffleSong);
 
 function updateProgress(e) {
   const { duration, currentTime } = e.srcElement;
